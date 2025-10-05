@@ -218,7 +218,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       child: Center(
                         child: Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width * 0.27,
                               child: CountryCodePicker(
                                 onChanged: (code) {
@@ -244,7 +244,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 // alignLeft: false,
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width * 0.5,
                               child: TextFormField(
                                   controller: mobile,

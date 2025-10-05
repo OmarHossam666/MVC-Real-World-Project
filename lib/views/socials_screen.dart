@@ -87,7 +87,7 @@ class _OnlinesScreenState extends State<SocialScreen> {
                   return Padding(
                     padding:
                         EdgeInsets.only(right: 2.sp, left: 2.sp, top: 2.sp),
-                    child: Container(
+                    child: SizedBox(
                       width: 30.sp,
                       height: 26.sp,
                       child: Stack(
@@ -129,10 +129,10 @@ class _OnlinesScreenState extends State<SocialScreen> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Container(
+                                            SizedBox(
                                                 width: 30.sp,
                                                 child: Text(
-                                                  "${location.name}",
+                                                  location.name,
                                                   maxLines: 1,
                                                   style: TextStyle(
                                                       fontWeight:
@@ -181,7 +181,7 @@ class _OnlinesScreenState extends State<SocialScreen> {
                           Positioned(
                               top: 0,
                               left: 3.sp,
-                              child: Container(
+                              child: SizedBox(
                                 width: 12.sp,
                                 height: 12.sp,
                                 // decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.blueAccent),

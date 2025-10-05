@@ -28,6 +28,8 @@ import '../controllers/AuthController.dart';
 import 'login_screen.dart';
 
 class GiftsScreen extends StatefulWidget {
+  const GiftsScreen({super.key});
+
   @override
   _GiftsScreenState createState() => _GiftsScreenState();
 }
@@ -172,7 +174,7 @@ class _GiftsScreenState extends State<GiftsScreen>
                   Tab(text: 'Clipped'),
                 ],
               ),
-              Container(
+              SizedBox(
                 height: Constants.getHeight(context) * 0.8,
                 child: TabBarView(
                   controller: tabController,
@@ -314,7 +316,7 @@ class _GiftsScreenState extends State<GiftsScreen>
                                   );
                                 }),
                     giftsClipped == null || giftsClipped!.isEmpty
-                        ? Container(
+                        ? SizedBox(
                             height: Constants.getHeight(context) * 0.7,
                             child: EmptyWidget(
                                 hint:
@@ -428,7 +430,7 @@ class ShowMoreText extends StatefulWidget {
   final String text;
   final int maxLines;
 
-  ShowMoreText({required this.text, this.maxLines = 2});
+  const ShowMoreText({super.key, required this.text, this.maxLines = 2});
 
   @override
   _ShowMoreTextState createState() => _ShowMoreTextState();

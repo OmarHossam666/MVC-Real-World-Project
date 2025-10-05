@@ -140,7 +140,7 @@ class _PinCodeScreenState extends State<PinCodeScreen>
                  Container(
                   width: Constants.getWidth(context)* 0.85,
                    child: Text(
-                  "You will recieve a pin code on your phone" + " "+ widget.phone.toString(),
+                  "You will recieve a pin code on your phone" " "+ widget.phone.toString(),
                      textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,

@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 class SpaceHeight extends StatelessWidget {
   final double height;
   const SpaceHeight({
-    Key? key,
+    super.key,
     required this.height,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,9 @@ class SpaceHeight extends StatelessWidget {
 class SpaceWidth extends StatelessWidget {
   final double width;
   const SpaceWidth({
-    Key? key,
+    super.key,
     required this.width,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:america/services/AppLocalizations.dart';
 import 'package:america/widgets/text_field.dart';
 class PhoneNumberTextField extends StatefulWidget {
+  const PhoneNumberTextField({super.key});
+
   @override
   _PhoneNumberTextFieldState createState() => _PhoneNumberTextFieldState();
 }
@@ -16,7 +18,7 @@ class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Select Country'),
-          content: Container(
+          content: SizedBox(
             width: double.maxFinite,
             child: ListView.builder(
               shrinkWrap: true,

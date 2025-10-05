@@ -18,7 +18,7 @@ import 'package:america/views/homeScreen.dart';
 class AppScreen extends StatefulWidget {
   final int selectedPage;
 
-  const AppScreen({Key? key, this.selectedPage = 0}) : super(key: key);
+  const AppScreen({super.key, this.selectedPage = 0});
 
   @override
   _AppScreenState createState() => _AppScreenState();
@@ -42,13 +42,14 @@ class _AppScreenState extends State<AppScreen>
 
   @override
   void initState() {
-    _tabController = new TabController(length: 3, vsync: this, initialIndex: 0);
+    _tabController = TabController(length: 3, vsync: this, initialIndex: 0);
     _tabController!.addListener(_handleTabSelection);
 
     super.initState();
   }
 
 
+  @override
   dispose() {
     super.dispose();
     _tabController!.dispose();
@@ -58,6 +59,7 @@ class _AppScreenState extends State<AppScreen>
   CustomAppTheme? customAppTheme;
 
 
+  @override
   Widget build(BuildContext context) {
 
     return Consumer<AppThemeNotifier>(
@@ -107,10 +109,10 @@ class _AppScreenState extends State<AppScreen>
                           children: <Widget>[
                             Icon(
                               MdiIcons.home,
-                              color: themeData!.colorScheme.onBackground,
+                              color: themeData!.colorScheme.onSurface,
                             ),
                             Container(
-                              child: Text(Translator.translate("home"),style: TextStyle(color: themeData!.colorScheme.onBackground,fontSize: 10),),
+                              child: Text(Translator.translate("home"),style: TextStyle(color: themeData!.colorScheme.onSurface,fontSize: 10),),
                             )
                           ],
                         )
@@ -135,10 +137,10 @@ class _AppScreenState extends State<AppScreen>
                           children: <Widget>[
                             Icon(
                               MdiIcons.newspaperVariantOutline,
-                              color: themeData!.colorScheme.onBackground,
+                              color: themeData!.colorScheme.onSurface,
                             ),
                             Container(
-                              child: Text(Translator.translate("Weekly Ads"),style: TextStyle(color: themeData!.colorScheme.onBackground,fontSize: 10),),
+                              child: Text(Translator.translate("Weekly Ads"),style: TextStyle(color: themeData!.colorScheme.onSurface,fontSize: 10),),
                             )
                           ],
                         )),
@@ -162,10 +164,10 @@ class _AppScreenState extends State<AppScreen>
                           children: <Widget>[
                             Icon(
                               MdiIcons.scissorsCutting,
-                              color: themeData!.colorScheme.onBackground,
+                              color: themeData!.colorScheme.onSurface,
                             ),
                             Container(
-                              child: Text(Translator.translate("Coupons"),style: TextStyle(color: themeData!.colorScheme.onBackground,fontSize: 10),),
+                              child: Text(Translator.translate("Coupons"),style: TextStyle(color: themeData!.colorScheme.onSurface,fontSize: 10),),
                             )
                           ],
                         )),

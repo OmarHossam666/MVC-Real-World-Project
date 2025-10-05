@@ -40,8 +40,9 @@ class Network {
   }
 
   static changeUrl(String url){
-    if(url[url.length-1] == "/")
+    if(url[url.length-1] == "/") {
       return url.substring(0, url.length - 1);
+    }
     return url;
   }
 
@@ -53,9 +54,9 @@ class NetworkResponse {
   http.Response? _baseResponse;
 
   NetworkResponse(String body, int statusCode, {http.Response? baseResponse}) {
-    this._body = body;
-    this._statusCode = statusCode;
-    this._baseResponse = baseResponse;
+    _body = body;
+    _statusCode = statusCode;
+    _baseResponse = baseResponse;
   }
 
   int? get statusCode => _statusCode;

@@ -28,7 +28,7 @@ class SettingController {
 
     try {
       NetworkResponse response = await Network.get(url, headers: headers);
-      log("settings data: " + response.body.toString());
+      log("settings data: ${response.body}");
       MyResponse<List<Setting>> myResponse = MyResponse(response.statusCode);
       print("Setting 111");
       if (response.statusCode == 200) {
@@ -66,7 +66,7 @@ class SettingController {
 
     try {
       NetworkResponse response = await Network.get(url, headers: headers);
-      log("contact us data: " + response.body.toString());
+      log("contact us data: ${response.body}");
       MyResponse<ContactModel> myResponse = MyResponse(response.statusCode);
 
       if (response.statusCode == 200) {

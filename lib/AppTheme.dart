@@ -2,9 +2,6 @@
 * File : App Theme
 * Version : 1.0.0
 * */
-
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -78,7 +75,7 @@ class AppTheme {
       double? height,
       double wordSpacing = 0,
       double? fontSize}) {
-    double? finalFontSize = fontSize != null ? fontSize : textStyle!.fontSize;
+    double? finalFontSize = fontSize ?? textStyle!.fontSize;
 
     Color? finalColor;
     if (color == null) {
@@ -162,7 +159,7 @@ class AppTheme {
       actionsIconTheme: IconThemeData(
         color: Color(0xff495057),
       ),
-      color: Color(0xffffffff),
+      backgroundColor: Color(0xffffffff),
       iconTheme: IconThemeData(color: Color(0xff495057), size: 24),
     ),
     navigationRailTheme: NavigationRailThemeData(
@@ -179,12 +176,11 @@ class AppTheme {
         onPrimary: Colors.white,
         secondary: Color(0xff495057),
         onSecondary: Colors.white,
-        surface: Color(0xffe2e7f1),
-        background: Color(0xfff3f4f7),
-        onBackground: Color(0xff495057)),
-    cardTheme: CardTheme(
+        surface: Color(0xfff3f4f7),
+        onSurface: Color(0xff495057)),
+    cardTheme: CardThemeData(
       color: Colors.white,
-      shadowColor: Colors.black.withOpacity(0.4),
+      shadowColor: Colors.black.withValues(alpha: 0.4),
       elevation: 1,
       margin: EdgeInsets.all(0),
     ),
@@ -207,7 +203,14 @@ class AppTheme {
       color: Color(0xff0f63a7),
     ),
     textTheme: lightTextTheme,
-    indicatorColor: Colors.white,
+    tabBarTheme: TabBarThemeData(
+      unselectedLabelColor: Color(0xff495057),
+      labelColor: Color(0xff0f63a7),
+      indicatorSize: TabBarIndicatorSize.label,
+      indicator: UnderlineTabIndicator(
+        borderSide: BorderSide(color: Color(0xff0f63a7), width: 2.0),
+      ),
+    ),
     disabledColor: Color(0xffdcc7ff),
     highlightColor: Colors.white,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -228,15 +231,7 @@ class AppTheme {
           .merge(TextStyle(color: Color(0xff495057))),
     ),
     bottomAppBarTheme:
-        BottomAppBarTheme(color: Color(0xffffffff), elevation: 2),
-    tabBarTheme: TabBarTheme(
-      unselectedLabelColor: Color(0xff495057),
-      labelColor: Color(0xff0f63a7),
-      indicatorSize: TabBarIndicatorSize.label,
-      indicator: UnderlineTabIndicator(
-        borderSide: BorderSide(color: Color(0xff0f63a7), width: 2.0),
-      ),
-    ),
+        BottomAppBarThemeData(color: Color(0xffffffff), elevation: 2),
     sliderTheme: SliderThemeData(
       activeTrackColor: Color(0xff0f63a7),
       inactiveTrackColor: Color(0xff0f63a7).withAlpha(140),
@@ -263,19 +258,18 @@ class AppTheme {
         actionsIconTheme: IconThemeData(
           color: Color(0xffffffff),
         ),
-        color: Color(0xff2e343b),
+        backgroundColor: Color(0xff2e343b),
         iconTheme: IconThemeData(color: Color(0xffffffff), size: 24),
       ),
       colorScheme: ColorScheme.dark(
         primary: Color(0xff0f63a7),
         secondary: Color(0xff00cc77),
-        background: Color(0xff343a40),
+        surface: Color(0xff343a40),
         onPrimary: Colors.white,
-        onBackground: Colors.white,
+        onSurface: Colors.white,
         onSecondary: Colors.white,
-        surface: Color(0xff585e63),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: Color(0xff37404a),
         shadowColor: Color(0xff000000),
         elevation: 1,
@@ -285,7 +279,6 @@ class AppTheme {
         color: Colors.white,
       ),
       textTheme: darkTextTheme,
-      indicatorColor: Colors.white,
       disabledColor: Color(0xffa3a3a3),
       highlightColor: Colors.white,
       inputDecorationTheme: InputDecorationTheme(
@@ -320,8 +313,9 @@ class AppTheme {
             .merge(TextStyle(color: Color(0xffffffff))),
       ),
       bottomAppBarTheme:
-          BottomAppBarTheme(color: Color(0xff464c52), elevation: 2),
-      tabBarTheme: TabBarTheme(
+          BottomAppBarThemeData(color: Color(0xff464c52), elevation: 2),
+      tabBarTheme: TabBarThemeData(
+        indicatorColor: Colors.white,
         unselectedLabelColor: Color(0xff495057),
         labelColor: Color(0xff0f63a7),
         indicatorSize: TabBarIndicatorSize.label,

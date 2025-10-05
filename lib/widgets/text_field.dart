@@ -23,7 +23,7 @@ class CustomTextField extends StatelessWidget {
   final Color? borderColor;
 
   const CustomTextField({
-    Key? key,
+    super.key,
     this.onTap,
     this.disableWrite=false,
     this.width,
@@ -38,7 +38,7 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.onSubmit,
     this.borderColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -12,7 +12,7 @@ class PrimaryButton extends StatelessWidget {
   final double? fontsize;
   final Function()? onTap;
   const PrimaryButton({
-    Key? key,
+    super.key,
     required this.title,
     this.width,
     this.height,
@@ -21,7 +21,7 @@ class PrimaryButton extends StatelessWidget {
     this.textColor,
     this.fontsize,
     this.onTap
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class PrimaryOutlinedButton extends StatelessWidget {
   final double? fontsize;
   final Function()? onTap;
   const PrimaryOutlinedButton({
-    Key? key,
+    super.key,
     required this.title,
     this.width,
     this.height,
@@ -82,7 +82,7 @@ class PrimaryOutlinedButton extends StatelessWidget {
 
     this.fontsize,
     this.onTap
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

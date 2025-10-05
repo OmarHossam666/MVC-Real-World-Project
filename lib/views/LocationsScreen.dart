@@ -85,7 +85,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                   return Padding(
                     padding:
                         EdgeInsets.only(right: 2.sp, left: 2.sp, top: 2.sp),
-                    child: Container(
+                    child: SizedBox(
                       width: 30.sp,
                       height: 26.sp,
                       child: Stack(

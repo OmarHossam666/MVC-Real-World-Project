@@ -50,7 +50,7 @@ class _ApplyCareerScreenState extends State<ApplyCareerScreen> {
             ),
           ),
           body: isInProgress
-              ? Container(
+              ? SizedBox(
                   width: Constants.getWidth(context),
                   height: Constants.getHeight(context),
                   child: Center(

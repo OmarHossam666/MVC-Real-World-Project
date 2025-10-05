@@ -50,6 +50,8 @@ import 'LocationsScreen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -97,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // Initialize actionMap here in the initState method
     actionMap = {
       "location": () {
-        if (locations!.first.lat != null && locations!.first.lng != null) {
+        if (locations!.first.lng != null) {
           final Uri toLaunchGoogleMap = Uri.parse(
               "https://www.google.com/maps/search/?api=1&query=${locations!.first.lat},${locations!.first.lng}");
           _launchInWebViewGoogleMap(toLaunchGoogleMap);
@@ -107,18 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       },
       "online": () {
-        if (onlines!.first.link != null) {
-          final Uri linkOnline = Uri.parse(onlines!.first.link);
-          _launchInWebViewWithoutJavaScript(linkOnline);
-          return null; // Return null as no widget to display
-        } else {
-          return Text("Can't find Link");
-        }
-      },
+        final Uri linkOnline = Uri.parse(onlines!.first.link);
+        _launchInWebViewWithoutJavaScript(linkOnline);
+        return null; // Return null as no widget to display
+            },
       "social": () async {
         for (var setting in settings!) {
           if (setting.link != null) {
-            final Uri toLaunch = await Uri.parse(setting.link!);
+            final Uri toLaunch = Uri.parse(setting.link!);
 
             _launchInWebViewWithoutJavaScript(toLaunch);
           }
@@ -359,7 +357,7 @@ class _HomeScreenState extends State<HomeScreen> {
           height: Constants.getHeight(context) * 0.45,
           color: Colors.white,
           child: Center(
-            child: Container(
+            child: SizedBox(
               width: 230,
               height: 230,
               child: SizedBox(
@@ -422,7 +420,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               SingleChildScrollView(
                   child: isLoading
-                      ? Container(
+                      ? SizedBox(
                           width: Constants.getWidth(context),
                           height: Constants.getHeight(context),
                           child: Center(
@@ -498,13 +496,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     width: Constants.getWidth(context),
                                     height: Constants.getHeight(context) * 0.3,
                                     fit: BoxFit.fill),
-                                banners == null || banners!.length == 0
+                                banners == null || banners!.isEmpty
                                     ? Container()
                                     : Divider(
                                         thickness: 1.5,
                                         color: Color(0xffc7485f),
                                       ),
-                                banners == null || banners!.length == 0
+                                banners == null || banners!.isEmpty
                                     ? Container()
                                     : Center(
                                         child: CarouselSlider.builder(
@@ -573,7 +571,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   thickness: 1.5,
                                   color: Color(0xffc7485f),
                                 ),
-                                banners == null || banners!.length == 0
+                                banners == null || banners!.isEmpty
                                     ? Container()
                                     : DotsIndicator(
                                         dotsCount: banners!.length,
@@ -853,7 +851,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
+                                SizedBox(
                                   width: 5.sp,
                                   height: 5.sp,
                                   child: Image.asset(
@@ -873,7 +871,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
+                                SizedBox(
                                   width: 5.sp,
                                   height: 5.sp,
                                   child: Image.asset(
@@ -897,7 +895,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
+                                SizedBox(
                                   width: 5.sp,
                                   height: 5.sp,
                                   child: Image.asset(
@@ -917,7 +915,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
+                                SizedBox(
                                   width: 5.sp,
                                   height: 5.sp,
                                   child: Image.asset(
@@ -970,8 +968,8 @@ class BoxItem extends StatelessWidget {
   final Widget image;
   final VoidCallback onTap;
 
-  BoxItem(
-      {required this.text,
+  const BoxItem(
+      {super.key, required this.text,
       required this.color,
       required this.image,
       required this.onTap,
@@ -1005,10 +1003,10 @@ class BoxItem extends StatelessWidget {
                             SpaceHeight(height: 3),
                             Container(
                               width: 20.sp, // Adjust the width as needed
-                              height: 20.sp, // Adjust the height as needed
-                              child: image,
+                              height: 20.sp,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20)),
+                                  borderRadius: BorderRadius.circular(20)), // Adjust the height as needed
+                              child: image,
                             )
                           ],
                         )

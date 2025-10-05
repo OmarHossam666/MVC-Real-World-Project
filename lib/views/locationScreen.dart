@@ -14,6 +14,8 @@ import '../services/navigator_utils.dart';
 import 'login_screen.dart';
 
 class LocationScreen extends StatefulWidget {
+  const LocationScreen({super.key});
+
   @override
   _LocationScreenState createState() => _LocationScreenState();
 }

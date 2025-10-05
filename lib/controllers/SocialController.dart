@@ -29,7 +29,7 @@ class SocialController {
 
     try {
       NetworkResponse response = await Network.get(url, headers: headers);
-      log("social data: " + response.body.toString());
+      log("social data: ${response.body}");
       MyResponse<List<Social>> myResponse = MyResponse(response.statusCode);
       print("Social 111");
       if (response.statusCode == 200) {

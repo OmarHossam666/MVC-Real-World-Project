@@ -33,7 +33,7 @@ class MessagingConfig {
     FirebaseMessaging.onMessage.listen((RemoteMessage event) {
       log("message recieved");
       Fluttertoast.showToast(
-        msg: event.notification!.title.toString() + "\n" + event.notification!.body.toString(),
+        msg: "${event.notification!.title}\n${event.notification!.body}",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,
@@ -51,7 +51,7 @@ class MessagingConfig {
  static Future<void> messageHandler(RemoteMessage message) async {
   log('background message ${message.notification!.body}');
    Fluttertoast.showToast(
-        msg:  message.notification!.title.toString() + "\n" + message.notification!.body.toString(),
+        msg:  "${message.notification!.title}\n${message.notification!.body}",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.CENTER,
         timeInSecForIosWeb: 1,

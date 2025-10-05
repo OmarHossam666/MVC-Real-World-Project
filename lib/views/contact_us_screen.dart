@@ -39,7 +39,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
     }
 
     MyResponse<ContactModel> myResponse =
-    await    SettingController.getContactUs();;
+    await    SettingController.getContactUs();
 
     if (myResponse.success) {
       print("contact done12");
@@ -101,7 +101,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                   ),
 
                  
-                  isInProgress ?   Container(
+                  isInProgress ?   SizedBox(
                       width: Constants.getWidth(context),
                       height: Constants.getHeight(context),
                       child: Center(

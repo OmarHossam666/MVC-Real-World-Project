@@ -61,7 +61,7 @@ class _ClippedGiftScreenState extends State<ClippedGiftScreen> {
 
     if (myResponse.success) {
       print("coupons done12");
-      log("data: " + myResponse.data.toString());
+      log("data: ${myResponse.data}");
       couponExpir = myResponse.data;
     } else {
       print("coupons er");
@@ -121,7 +121,7 @@ class _ClippedGiftScreenState extends State<ClippedGiftScreen> {
         ),
         body: SingleChildScrollView(
             child: isInProgress
-                ? Container(
+                ? SizedBox(
                     width: Constants.getWidth(context),
                     height: Constants.getHeight(context),
                     child: Center(
@@ -131,7 +131,7 @@ class _ClippedGiftScreenState extends State<ClippedGiftScreen> {
                     ),
                   )
                 : isDone
-                    ? Container(
+                    ? SizedBox(
                         width: Constants.getWidth(context),
                         height: Constants.getHeight(context),
                         child: Center(
@@ -144,7 +144,7 @@ class _ClippedGiftScreenState extends State<ClippedGiftScreen> {
                         )),
                       )
                     : couponExpir["time_remaining"] == null
-                        ? Container(
+                        ? SizedBox(
                             width: Constants.getWidth(context),
                             height: Constants.getHeight(context),
                             child: Center(
@@ -262,7 +262,7 @@ class ShowMoreText extends StatefulWidget {
   final String text;
   final int maxLines;
 
-  ShowMoreText({required this.text, this.maxLines = 2});
+  const ShowMoreText({super.key, required this.text, this.maxLines = 2});
 
   @override
   _ShowMoreTextState createState() => _ShowMoreTextState();

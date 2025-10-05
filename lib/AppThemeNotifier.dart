@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AppThemeNotifier extends ChangeNotifier {
 
-  int _themeMode = 1;
+  int? _themeMode = 1;
 
   AppThemeNotifier() {
     init();
@@ -17,10 +17,7 @@ class AppThemeNotifier extends ChangeNotifier {
   init() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     int? data = sharedPreferences.getInt("themeMode");
-    if (data == null)
-      _themeMode = 1;
-    else
-      _themeMode = data;
+    _themeMode = data;
     notifyListeners();
   }
 
@@ -31,7 +28,7 @@ class AppThemeNotifier extends ChangeNotifier {
   }
 
   Future<void> updateTheme(int themeMode) async {
-    this._themeMode = themeMode;
+    _themeMode = themeMode;
     notifyListeners();
 
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();

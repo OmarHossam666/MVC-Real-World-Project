@@ -2,7 +2,6 @@
 //
 //     final categoryModel = categoryModelFromJson(jsonString);
 
-import 'dart:convert';
 
 import 'package:america/models/Product.dart';
 import 'package:america/utils/TextUtils.dart';

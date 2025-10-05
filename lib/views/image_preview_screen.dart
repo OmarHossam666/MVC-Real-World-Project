@@ -8,7 +8,7 @@ class ImagePreviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: Constants.getWidth(context),
         height: Constants.getHeight(context),
     child: PhotoView(

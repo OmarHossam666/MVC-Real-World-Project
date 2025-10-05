@@ -82,8 +82,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
         basicData = BasicData.fromJson(response.data);
         log("converted");
-        ApiUtil.MAIN_API_URL = "https://" + basicData!.domain + "/api/v1/user/";
-        ApiUtil.ImageUrl = "https://" + basicData!.domain + "/assets/admin/uploads/";
+        ApiUtil.MAIN_API_URL = "https://${basicData!.domain}/api/v1/user/";
+        ApiUtil.ImageUrl = "https://${basicData!.domain}/assets/admin/uploads/";
        
         log(ApiUtil.MAIN_API_URL);
 
@@ -92,8 +92,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
       baseApiModel = BaseApiModel.fromMap(baseApiData);
       log("converted");
       
-         ApiUtil.MAIN_API_URL = "https://" + baseApiModel!.domain + "/api/v1/user/";
-        ApiUtil.ImageUrl = "https://" + baseApiModel!.domain + "/assets/admin/uploads/";
+         ApiUtil.MAIN_API_URL = "https://${baseApiModel!.domain}/api/v1/user/";
+        ApiUtil.ImageUrl = "https://${baseApiModel!.domain}/assets/admin/uploads/";
       
       log(ApiUtil.MAIN_API_URL);
      }

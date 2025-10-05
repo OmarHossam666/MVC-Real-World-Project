@@ -24,13 +24,13 @@ class Product {
 
     String name = jsonObject['name'].toString();
 
-    String start_at = jsonObject['start_at'].toString();
-    String end_at = jsonObject['end_at'].toString();
+    String startAt = jsonObject['start_at'].toString();
+    String endAt = jsonObject['end_at'].toString();
     String photo = TextUtils.getImageUrl(jsonObject['photo'].toString());
     String price = jsonObject['price'].toString();
-    String after_price = jsonObject['after_price'].toString();
+    String afterPrice = jsonObject['after_price'].toString();
 
-    return Product(id, name, photo, price, after_price, start_at, end_at);
+    return Product(id, name, photo, price, afterPrice, startAt, endAt);
   }
 
   static List<Product> getListFromJson(List<dynamic> jsonArray) {

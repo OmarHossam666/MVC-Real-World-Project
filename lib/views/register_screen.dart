@@ -214,7 +214,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: Center(
                         child: Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width * 0.27,
                               child: CountryCodePicker(
                                 onChanged: (code) {
@@ -240,7 +240,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 // alignLeft: false,
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width * 0.5,
                               child: TextFormField(
                                   controller: mobile,
@@ -308,9 +308,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 await sharedPreferences.setString(
                                     'name', user['name']);
                                 await sharedPreferences.setString('email',
-                                    user['email'] == null ? "" : user['email']);
+                                    user['email'] ?? "");
                                 await sharedPreferences.setString('phone',
-                                    user['phone'] == null ? "" : user['phone']);
+                                    user['phone'] ?? "");
                                 await sharedPreferences.setString(
                                     'token', token);
 
@@ -332,7 +332,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
 
               SpaceWidget(size: 2),
-              Container(
+              SizedBox(
                 width: Constants.getWidth(context),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -19,11 +19,7 @@ class CouponController {
 
     Account account = await AuthController.getAccount();
 
-    String url = ApiUtil.MAIN_API_URL +
-        ApiUtil.Coupons +
-        "/${account.id}/" +
-        ApiUtil.CouponClip +
-        ApiUtil.getStoreId();
+    String url = "${ApiUtil.MAIN_API_URL}${ApiUtil.Coupons}/${account.id}/${ApiUtil.CouponClip}${ApiUtil.getStoreId()}";
 
     log(url);
 
@@ -64,11 +60,7 @@ class CouponController {
   static Future<MyResponse<List<ClippedCoupons>>> getClippedCoupons() async {
     //Getting User Api Token
     Account account = await AuthController.getAccount();
-    String url = ApiUtil.MAIN_API_URL +
-        ApiUtil.Coupons +
-        "/${account.id}/" +
-        ApiUtil.CouponClipped +
-        ApiUtil.getStoreId();
+    String url = "${ApiUtil.MAIN_API_URL}${ApiUtil.Coupons}/${account.id}/${ApiUtil.CouponClipped}${ApiUtil.getStoreId()}";
 
     log(url);
     String? token = await AuthController.getApiToken();
@@ -109,10 +101,7 @@ class CouponController {
     print("Coupon sttart");
     //Getting User Api Token
 
-    String url = ApiUtil.MAIN_API_URL +
-        ApiUtil.Coupons +
-        "/${couponId}/" +
-        ApiUtil.moveToClip;
+    String url = "${ApiUtil.MAIN_API_URL}${ApiUtil.Coupons}/${couponId}/${ApiUtil.moveToClip}";
 
     log(url);
     Map<String, String> headers = ApiUtil.getHeader(
@@ -149,10 +138,7 @@ class CouponController {
     print("Coupon sttart");
     //Getting User Api Token
 
-    String url = ApiUtil.MAIN_API_URL +
-        ApiUtil.Coupons +
-        "/${couponId}/" +
-        ApiUtil.checkExpir;
+    String url = "${ApiUtil.MAIN_API_URL}${ApiUtil.Coupons}/${couponId}/${ApiUtil.checkExpir}";
 
     log(url);
     Map<String, String> headers = ApiUtil.getHeader(
@@ -281,7 +267,7 @@ class CouponController {
     print("Coupon sttart");
     //Getting User Api Token
 
-    String url = ApiUtil.MAIN_API_URL + ApiUtil.gifts + "/${giftId}/" + "clip";
+    String url = "${ApiUtil.MAIN_API_URL}${ApiUtil.gifts}/${giftId}/clip";
 
     log(url);
     Map<String, String> headers = ApiUtil.getHeader(
@@ -318,10 +304,7 @@ class CouponController {
     print("Coupon sttart");
     //Getting User Api Token
 
-    String url = ApiUtil.MAIN_API_URL +
-        ApiUtil.gifts +
-        "/${giftId}/" +
-        ApiUtil.checkGiftExpir;
+    String url = "${ApiUtil.MAIN_API_URL}${ApiUtil.gifts}/${giftId}/${ApiUtil.checkGiftExpir}";
 
     log(url);
     Map<String, String> headers = ApiUtil.getHeader(

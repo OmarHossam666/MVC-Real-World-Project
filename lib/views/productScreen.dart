@@ -20,6 +20,8 @@ import 'package:america/AppTheme.dart';
 import 'package:america/AppThemeNotifier.dart';
 
 class ProductScreen extends StatefulWidget {
+  const ProductScreen({super.key});
+
   @override
   _ProductScreenState createState() => _ProductScreenState();
 }
@@ -74,7 +76,7 @@ class _ProductScreenState extends State<ProductScreen> {
       categoryModel!.categories!
           .insert(0, Category(name: "All", products: myResponseProducts.data));
 
-      if (categoryModel!.categories!.length > 0) {
+      if (categoryModel!.categories!.isNotEmpty) {
         selectedCategory = categoryModel!.categories![0];
       }
     } else {
@@ -175,7 +177,7 @@ class _ProductScreenState extends State<ProductScreen> {
               color: Color(0xffc7485f),
             ),
             isInProgress
-                ? Container(
+                ? SizedBox(
                     width: Constants.getWidth(context),
                     height: Constants.getHeight(context) * 0.6,
                     child: Center(

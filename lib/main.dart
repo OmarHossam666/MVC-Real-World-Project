@@ -9,7 +9,6 @@ import 'package:america/AppThemeNotifier.dart';
 import 'package:america/services/AppLocalizations.dart';
 import 'package:america/services/PushNotificationsManager.dart';
 import 'package:america/utils/SizeConfig.dart';
-import 'package:america/views/splashScreen.dart';
 
 import 'firebase_options.dart';
 import 'utils/messaging_config.dart';
@@ -24,8 +23,7 @@ Future<void> main() async {
   SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
       .then((_) async {
-    String langCode = await AllLanguage.getLanguage();
-    print("lang $langCode");
+    String? langCode = await AllLanguage.getLanguage();
     await Translator.load("en");
 
     runApp(ChangeNotifierProvider<AppThemeNotifier>(
@@ -36,6 +34,8 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Consumer<AppThemeNotifier>(
@@ -53,13 +53,13 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({super.key});
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   ThemeData? themeData;
 
   @override

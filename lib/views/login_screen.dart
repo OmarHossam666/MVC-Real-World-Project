@@ -213,7 +213,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Center(
                         child: Row(
                           children: [
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width * 0.27,
                               child: CountryCodePicker(
                                 onChanged: (code) {
@@ -239,7 +239,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 // alignLeft: false,
                               ),
                             ),
-                            Container(
+                            SizedBox(
                               width: MediaQuery.of(context).size.width * 0.5,
                               child: TextFormField(
                                   controller: mobile,
@@ -337,7 +337,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       textColor: Colors.white,
                     ),
               SpaceWidget(size: 2),
-              Container(
+              SizedBox(
                 width: Constants.getWidth(context),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -66,7 +66,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
       ),
       body: SingleChildScrollView(
         child: loadingInProgress
-            ? Container(
+            ? SizedBox(
                 width: Constants.getWidth(context),
                 height: Constants.getHeight(context),
                 child: Center(
@@ -81,7 +81,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
                     ? EmptyWidget(
                         hint: "No Branches Found",
                       )
-                    : Container(
+                    : SizedBox(
                         width: Constants.getWidth(context),
                         //height: Constants.getHeight(context) * 0.7,
                         child: Column(children: [
@@ -140,7 +140,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
                                         //         ),
                                         //       ),
                                         // SpaceHeight(height: 3),
-                                        Container(
+                                        SizedBox(
                                           width:
                                               Constants.getWidth(context) * 0.5,
                                           child: Text(
@@ -218,7 +218,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
                                 ),
                               ),
                             );
-                          }).toList(),
+                          }),
                         ]))),
       ),
     );

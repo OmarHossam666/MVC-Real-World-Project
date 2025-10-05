@@ -8,23 +8,23 @@ class FlutButton extends StatelessWidget {
   final ButtonStyle? style;
 
   final VoidCallback onPressed;
-  final MaterialStateProperty<EdgeInsetsGeometry>? msPadding;
+  final WidgetStateProperty<EdgeInsetsGeometry>? msPadding;
   final EdgeInsetsGeometry? padding;
 
-  final MaterialStateProperty<EdgeInsetsGeometry>? msShape;
+  final WidgetStateProperty<EdgeInsetsGeometry>? msShape;
   final OutlinedBorder? shape;
   final BorderRadiusGeometry? borderRadius;
   final double borderRadiusAll;
 
-  final MaterialStateProperty<Color>? msBackgroundColor;
+  final WidgetStateProperty<Color>? msBackgroundColor;
   final Color? backgroundColor;
-  final MaterialStateProperty<Color>? msShadowColor;
+  final WidgetStateProperty<Color>? msShadowColor;
   final Color? shadowColor;
 
   final Widget child;
 
-  FlutButton(
-      {required this.onPressed,
+  const FlutButton(
+      {super.key, required this.onPressed,
       required this.child,
       this.msPadding,
       this.padding,
@@ -39,8 +39,8 @@ class FlutButton extends StatelessWidget {
       this.msShadowColor,
       this.shadowColor});
 
-  FlutButton.rounded(
-      {required this.onPressed,
+  const FlutButton.rounded(
+      {super.key, required this.onPressed,
       required this.child,
       this.msPadding,
       this.padding,
@@ -55,8 +55,8 @@ class FlutButton extends StatelessWidget {
       this.msShadowColor,
       this.shadowColor});
 
-  FlutButton.small(
-      {required this.onPressed,
+  const FlutButton.small(
+      {super.key, required this.onPressed,
       required this.child,
       this.msPadding,
       this.padding = const EdgeInsets.fromLTRB(8, 4, 8, 4),
@@ -71,8 +71,8 @@ class FlutButton extends StatelessWidget {
       this.msShadowColor,
       this.shadowColor});
 
-  FlutButton.medium(
-      {required this.onPressed,
+  const FlutButton.medium(
+      {super.key, required this.onPressed,
       required this.child,
       this.msPadding,
       this.padding = const EdgeInsets.fromLTRB(24, 12, 24, 12),
@@ -87,8 +87,8 @@ class FlutButton extends StatelessWidget {
       this.msShadowColor,
       this.shadowColor});
 
-  FlutButton.large(
-      {required this.onPressed,
+  const FlutButton.large(
+      {super.key, required this.onPressed,
       required this.child,
       this.msPadding,
       this.padding = const EdgeInsets.fromLTRB(36, 16, 36, 16),
@@ -109,12 +109,12 @@ class FlutButton extends StatelessWidget {
         style: style ??
             ButtonStyle(
                 backgroundColor: msBackgroundColor ??
-                    MaterialStateProperty.all(backgroundColor),
+                    WidgetStateProperty.all(backgroundColor),
                 shadowColor:
-                    msShadowColor ?? MaterialStateProperty.all(shadowColor),
-                padding: msPadding ?? MaterialStateProperty.all(padding),
-                shape: msShape as MaterialStateProperty<OutlinedBorder?>? ??
-                    MaterialStateProperty.all(shape ??
+                    msShadowColor ?? WidgetStateProperty.all(shadowColor),
+                padding: msPadding ?? WidgetStateProperty.all(padding),
+                shape: msShape as WidgetStateProperty<OutlinedBorder?>? ??
+                    WidgetStateProperty.all(shape ??
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(borderRadiusAll),
                         ))),

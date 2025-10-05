@@ -118,7 +118,7 @@ class CareersController {
       applyData.clear();
     } catch (e) {
       showSnackBar(context, e.toString());
-      if (e is DioError) {
+      if (e is DioException) {
         log(e.response!.data.toString());
       }
       applyData.clear();

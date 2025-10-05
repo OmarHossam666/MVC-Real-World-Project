@@ -26,6 +26,8 @@ import '../controllers/AuthController.dart';
 import 'login_screen.dart';
 
 class CouponsScreen extends StatefulWidget {
+  const CouponsScreen({super.key});
+
   @override
   _CouponsScreenState createState() => _CouponsScreenState();
 }
@@ -171,7 +173,7 @@ class _CouponsScreenState extends State<CouponsScreen>
                   Tab(text: 'Clipped'),
                 ],
               ),
-              Container(
+              SizedBox(
                 height: Constants.getHeight(context) * 0.8,
                 child: TabBarView(
                   controller: tabController,
@@ -244,8 +246,7 @@ class _CouponsScreenState extends State<CouponsScreen>
                                                 child: RichText(
                                                   text: TextSpan(
                                                     text:
-                                                        "${coupon.priceAfterDiscount.toString()}" +
-                                                            "  ",
+                                                        coupon.priceAfterDiscount.toString(),
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.bold,
@@ -309,7 +310,7 @@ class _CouponsScreenState extends State<CouponsScreen>
                                   );
                                 }),
                     couponsClipped == null || couponsClipped!.isEmpty
-                        ? Container(
+                        ? SizedBox(
                             height: Constants.getHeight(context) * 0.7,
                             child: EmptyWidget(
                                 hint:
@@ -416,7 +417,7 @@ class ShowMoreText extends StatefulWidget {
   final String text;
   final int maxLines;
 
-  ShowMoreText({required this.text, this.maxLines = 2});
+  const ShowMoreText({super.key, required this.text, this.maxLines = 2});
 
   @override
   _ShowMoreTextState createState() => _ShowMoreTextState();

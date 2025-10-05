@@ -1,19 +1,14 @@
 import 'dart:developer';
 
-import 'package:america/constants.dart';
 import 'package:america/controllers/AuthController.dart';
-import 'package:america/models/Online.dart';
 import 'package:america/utils/app_ui.dart';
-import 'package:america/utils/main_services.dart';
 import 'package:america/utils/space_widget2.dart';
 import 'package:america/views/contact_us_screen.dart';
 import 'package:america/views/edit_profile_screen.dart';
 import 'package:america/views/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../models/Location.dart';
 import '../services/navigator_utils.dart';
 
 

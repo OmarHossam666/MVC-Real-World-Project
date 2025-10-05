@@ -12,6 +12,8 @@ import 'package:america/widgets/navigator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -28,14 +30,9 @@ class _SplashScreenState extends State<SplashScreen> {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? token = sharedPreferences.getString("token");
     log(token.toString());
-    if (token == null) {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => LoginScreen()));
-    } else {
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => BranchesScreen()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => BranchesScreen()));
     }
-  }
 
   @override
   Widget build(BuildContext context) {

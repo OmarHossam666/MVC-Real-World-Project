@@ -9,13 +9,13 @@ class LoadingButton extends StatelessWidget {
   final Color? colorButton;
 
   const LoadingButton({
-    Key? key,
+    super.key,
    
     this.width,
     this.height,
     this.colorButton,
 
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -61,12 +61,12 @@ class LoadingOutlinedButton extends StatelessWidget {
   final Color? colorButton;
 
   const LoadingOutlinedButton({
-    Key? key,
+    super.key,
     this.width,
     this.height,
     this.colorButton,
 
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

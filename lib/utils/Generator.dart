@@ -18,35 +18,35 @@ class Generator {
       bool showInactive = true}) {
     int ratingCount = rating.floor();
     bool isHalf = (ratingCount != rating);
-    List<Widget> _stars = [];
+    List<Widget> stars = [];
     for (int i = 0; i < 5; i++) {
       if (i < ratingCount) {
-        _stars.add(Icon(
+        stars.add(Icon(
           MdiIcons.star,
           color: activeColor,
           size: size,
         ));
 
-        _stars.add(SizedBox(width: spacing));
+        stars.add(SizedBox(width: spacing));
       } else {
         if (isHalf) {
           isHalf = false;
-          _stars.add(Icon(
+          stars.add(Icon(
             MdiIcons.starHalfFull,
             color: activeColor,
             size: size,
           ));
         } else if (showInactive) {
-          _stars.add(Icon(
+          stars.add(Icon(
             inactiveStarFilled ? MdiIcons.star : MdiIcons.starOutline,
             color: inactiveColor,
             size: size,
           ));
         }
-        _stars.add(SizedBox(width: spacing));
+        stars.add(SizedBox(width: spacing));
       }
     }
-    return Row(mainAxisSize: MainAxisSize.min, children: _stars);
+    return Row(mainAxisSize: MainAxisSize.min, children: stars);
   }
 
   static String getTextFromSeconds(
@@ -63,7 +63,7 @@ class Generator {
 
     if (withHours && hour != 0) {
       if (hour < 10 && withZeros) {
-        timeText += "0" + hour.toString() + (withSpace ? " : " : ":");
+        timeText += "0$hour${withSpace ? " : " : ":"}";
       } else {
         timeText += hour.toString() + (withSpace ? " : " : "");
       }
@@ -71,14 +71,14 @@ class Generator {
 
     if (withMinutes) {
       if (minute < 10 && withZeros) {
-        timeText += "0" + minute.toString() + (withSpace ? " : " : ":");
+        timeText += "0$minute${withSpace ? " : " : ":"}";
       } else {
         timeText += minute.toString() + (withSpace ? " : " : "");
       }
     }
 
     if (second < 10 && withZeros) {
-      timeText += "0" + second.toString();
+      timeText += "0$second";
     } else {
       timeText += second.toString();
     }
@@ -89,23 +89,23 @@ class Generator {
 
   static String convertDateTimeToText(DateTime dateTime,{bool showSecond=true,bool showDate=true,bool showTime=true}){
 
-    String date = dateTime.day <10 ? "0"+ dateTime.day.toString() : dateTime.day.toString();
-    String month = dateTime.month <10 ? "0"+ dateTime.month.toString() : dateTime.month.toString();
+    String date = dateTime.day <10 ? "0${dateTime.day}" : dateTime.day.toString();
+    String month = dateTime.month <10 ? "0${dateTime.month}" : dateTime.month.toString();
     String year = dateTime.year.toString();
 
     String hour = dateTime.hour.toString();
-    String minute = dateTime.minute < 10 ? "0"+dateTime.minute.toString() : dateTime.minute.toString();
+    String minute = dateTime.minute < 10 ? "0${dateTime.minute}" : dateTime.minute.toString();
     String second="";
-    if(showSecond) second = dateTime.second < 10 ? "0"+dateTime.second.toString() : dateTime.second.toString();
+    if(showSecond) second = dateTime.second < 10 ? "0${dateTime.second}" : dateTime.second.toString();
 
     String meridian = dateTime.hour<12 ?  "AM" : "PM";
 
     if(showDate && !showTime){
-      return date + "-" + month +"-"+year;
+      return "$date-$month-$year";
     }else if(!showDate && showTime){
-      return hour + ":" + minute + (showSecond?":":"") + second+" "+meridian;
+      return "$hour:$minute${showSecond?":":""}$second $meridian";
     }
-    return date + "-" + month +"-"+year +" " +hour + ":" + minute + (showSecond?":":"") + second+" "+meridian;
+    return "$date-$month-$year $hour:$minute${showSecond?":":""}$second $meridian";
   }
 
 

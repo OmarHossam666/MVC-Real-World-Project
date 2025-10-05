@@ -23,12 +23,9 @@ class AllLanguage {
     sharedPreferences.setString("langCode", langCode);
   }
 
-  static Future<String> getLanguage() async {
+  static Future<String?> getLanguage() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? langCode = sharedPreferences.getString("langCode");
-    if (langCode == null) {
-      langCode = supportedLanguagesCode.first;
-    }
     return langCode;
   }
 }
@@ -51,7 +48,7 @@ class Translator {
   static String translate(String text) {
     if (_localizedStrings != null) {
       String? value = _localizedStrings![text];
-      return value == null ? text : value;
+      return value ?? text;
     }
     return text;
   }

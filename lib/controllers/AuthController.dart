@@ -270,7 +270,7 @@ class AuthController {
   static Future<bool> sendEmailForget(context, {required String email}) async {
     try {
       String resetPasswordUrl =
-          ApiUtil.MAIN_API_URL + ApiUtil.resetPasswordEmail + "?email=" + email;
+          "${ApiUtil.MAIN_API_URL}${ApiUtil.resetPasswordEmail}?email=$email";
 
       log(resetPasswordUrl.toString());
       NetworkResponse response = await Network.post(
@@ -372,10 +372,6 @@ class AuthController {
           await SharedPreferences.getInstance();
 
       String? token = sharedPreferences.getString("token");
-
-      if (token == null) {
-        return AuthType.NOT_FOUND;
-      }
       return AuthType.LOGIN;
     } catch (e) {}
     return AuthType.NOT_FOUND;

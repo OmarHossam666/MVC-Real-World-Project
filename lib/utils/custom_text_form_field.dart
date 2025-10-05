@@ -28,7 +28,7 @@ class CustomTextFormField extends StatelessWidget {
   final Function()? onTap;
 
   const CustomTextFormField({
-    Key? key,
+    super.key,
     this.width,
     this.height,
     required this.title,
@@ -46,7 +46,7 @@ class CustomTextFormField extends StatelessWidget {
     this.fieldColor,
     this.autoValidate=false,
     
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,7 @@ class CustomTextFormField extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
          
           children: [
-            Container(
+            SizedBox(
               width: textWidth,
 
               child: FittedBox(

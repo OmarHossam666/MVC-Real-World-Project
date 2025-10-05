@@ -68,7 +68,7 @@ class BranchesController {
     try {
       NetworkResponse response = await Network.post(url,
           headers: headers, body: jsonEncode({"store_id": storeId}));
-      log("store id : " + response.body.toString());
+      log("store id : ${response.body}");
     } catch (e) {
       log(e.toString());
       //If any server error...

@@ -15,7 +15,7 @@ class LocationsController {
     //Getting User Api Token
     Account account = await AuthController.getAccount();
     String url = ApiUtil.MAIN_API_URL + ApiUtil.Location + ApiUtil.getStoreId();
-    log("locations: " + url);
+    log("locations: $url");
     Map<String, String> headers = ApiUtil.getHeader(
         requestType: RequestType.GetWithAuth, token: account.token ?? "");
 

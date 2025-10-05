@@ -22,6 +22,8 @@ import '../services/navigator_utils.dart';
 import 'login_screen.dart';
 
 class WeeklyAdsScreen extends StatefulWidget {
+  const WeeklyAdsScreen({super.key});
+
   @override
   _WeeklyAdsScreenState createState() => _WeeklyAdsScreenState();
 }
@@ -138,7 +140,7 @@ class _WeeklyAdsScreenState extends State<WeeklyAdsScreen> {
             // )
 
             isInProgress
-                ? Container(
+                ? SizedBox(
                     width: Constants.getWidth(context),
                     height: Constants.getHeight(context),
                     child: SizedBox(
@@ -160,7 +162,7 @@ class _WeeklyAdsScreenState extends State<WeeklyAdsScreen> {
 
                         items: weeklyAds!.map((WeeklyAd weeklyAd) {
                           return Builder(builder: (BuildContext context) {
-                            return Container(
+                            return SizedBox(
                               width: Constants.getWidth(context),
                               height: Constants.getHeight(context),
                               child: InkWell(

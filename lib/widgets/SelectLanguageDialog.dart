@@ -7,11 +7,13 @@ import '../AppTheme.dart';
 import '../AppThemeNotifier.dart';
 
 class SelectLanguageDialog extends StatefulWidget {
+  const SelectLanguageDialog({super.key});
+
   @override
-  _SelectLanguageDialogState createState() => _SelectLanguageDialogState();
+  SelectLanguageDialogState createState() => SelectLanguageDialogState();
 }
 
-class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
+class SelectLanguageDialogState extends State<SelectLanguageDialog> {
   late ThemeData themeData;
 
   String langCode = 'en';
@@ -23,18 +25,21 @@ class _SelectLanguageDialogState extends State<SelectLanguageDialog> {
   }
 
   _loadLanguage() async {
-    String language = await AllLanguage.getLanguage();
+    String? language = await AllLanguage.getLanguage();
     setState(() {
-      langCode = language;
+      langCode = language ?? 'en';
     });
   }
 
   Future<void> _handleRadioValueChange(String langCode) async {
     await Translator.load(langCode);
-    Navigator.pop(context);
-    Provider.of<AppThemeNotifier>(context, listen: false).notify();
+    if (mounted) {
+      Navigator.pop(context);
+      Provider.of<AppThemeNotifier>(context, listen: false).notify();
+    }
   }
 
+  @override
   Widget build(BuildContext context) {
     themeData = Theme.of(context);
     return Consumer<AppThemeNotifier>(

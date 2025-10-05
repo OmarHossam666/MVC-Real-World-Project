@@ -29,7 +29,7 @@ class ProductWidget extends StatelessWidget {
                 width: 30.sp,
                 child: RichText(
                   text: TextSpan(
-                    text: "${product.after_price.toString()}" + "  ",
+                    text: product.after_price.toString(),
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.green,
@@ -49,13 +49,13 @@ class ProductWidget extends StatelessWidget {
               SizedBox(
                   width: 30.sp,
                   child: Text(
-                    "${product.name}",
+                    product.name,
                     style: TextStyle(fontSize: 2.6.sp),
                   )),
               SizedBox(
                   width: 30.sp,
                   child: Text(
-                    "Valid : ${DateFormat('MMM d, yyyy').format(DateTime.parse(product.start_at!))} - ${DateFormat('MMM d, yyyy').format(DateTime.parse(product.end_at!))}",
+                    "Valid : ${DateFormat('MMM d, yyyy').format(DateTime.parse(product.start_at))} - ${DateFormat('MMM d, yyyy').format(DateTime.parse(product.end_at))}",
                     style: TextStyle(color: Colors.red),
                   )),
             ],

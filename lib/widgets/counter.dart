@@ -6,7 +6,7 @@ class CountdownContainer extends StatefulWidget {
   final Duration duration;
   final Function()? onFinish;
 
-  CountdownContainer({required this.duration,required this.onFinish});
+  const CountdownContainer({super.key, required this.duration,required this.onFinish});
 
   @override
   _CountdownContainerState createState() => _CountdownContainerState();

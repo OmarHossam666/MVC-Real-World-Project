@@ -15,16 +15,16 @@ class MyResponse<T>{
     String? error = jsonObject['error'];
     if (error != null) {
       this.errors = [error];
-      this.errorText = getFormattedError(this.errors);
+      errorText = getFormattedError(this.errors);
       return;
     }
     List<dynamic>? errors = jsonObject['errors'];
     if (errors != null) {
       this.errors = errors;
-      this.errorText = getFormattedError(errors);
+      errorText = getFormattedError(errors);
       return;
     }
-    this.errorText = "Something wrong";
+    errorText = "Something wrong";
   }
 
   static String getFormattedError(List<dynamic> errors){

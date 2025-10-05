@@ -13,7 +13,7 @@ class Coupon {
   String? save_price;
   String? start_at;
   String? end_at;
-  dynamic? timeWhenClipped;
+  dynamic timeWhenClipped;
   String? barcode;
 
   Coupon(
@@ -36,17 +36,17 @@ class Coupon {
     String name = jsonObject['name'].toString();
     String description = jsonObject['description'].toString();
     String terms = jsonObject['terms'].toString();
-    String start_at = jsonObject['start_at'].toString();
-    String end_at = jsonObject['end_at'].toString();
+    String startAt = jsonObject['start_at'].toString();
+    String endAt = jsonObject['end_at'].toString();
     String timeWhenClipped = jsonObject['time_when_clipped'].toString();
     String photo = TextUtils.getImageUrl(jsonObject['photo'].toString());
     String barcode = TextUtils.getImageUrl(jsonObject['barcode'].toString());
     String price = jsonObject['price'].toString();
     String priceAfterDiscount = jsonObject['price_after_discount'].toString();
-    String save_price = jsonObject['save_price'].toString();
+    String savePrice = jsonObject['save_price'].toString();
 
     return Coupon(id, name, photo, description, timeWhenClipped, terms, price,
-        priceAfterDiscount, save_price, start_at, end_at, barcode);
+        priceAfterDiscount, savePrice, startAt, endAt, barcode);
   }
 
   static List<Coupon> getListFromJson(List<dynamic> jsonArray) {
@@ -85,8 +85,8 @@ class ClippedCoupons {
   final String? description;
   final String? terms;
   final String? photo;
-  final dynamic? price;
-  final dynamic? priceAfterDiscount;
+  final dynamic price;
+  final dynamic priceAfterDiscount;
   final String? status;
   final String? startAt;
   final String? endAt;

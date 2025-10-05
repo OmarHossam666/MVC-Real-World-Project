@@ -20,7 +20,7 @@ class StoresModel {
   });
 
   factory StoresModel.fromJson(Map<String, dynamic> json) {
-    log("here :  " + json.toString());
+    log("here :  $json");
     return StoresModel(
       stores: json["stores"] == null
           ? []

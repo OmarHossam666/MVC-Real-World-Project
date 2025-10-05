@@ -40,7 +40,7 @@ class ImageUtils {
   static String getImageUrl(String url,
       {bool withoutStoragePrefix = true, bool withoutIPPrefix = true}) {
     if (withoutIPPrefix && withoutStoragePrefix) {
-      return ApiUtil.BASE_URL + "storage/" + url;
+      return "${ApiUtil.BASE_URL}storage/$url";
     }
 
     return url;
