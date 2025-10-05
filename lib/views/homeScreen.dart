@@ -5,7 +5,6 @@ import 'package:america/constants.dart';
 import 'package:america/controllers/AuthController.dart';
 import 'package:america/controllers/BannerController.dart';
 import 'package:america/controllers/Branches_Controller.dart';
-import 'package:america/controllers/CategoeriesController.dart';
 import 'package:america/controllers/LocationController.dart';
 import 'package:america/controllers/OnlineController.dart';
 import 'package:america/controllers/SettingController.dart';
@@ -27,8 +26,6 @@ import 'package:america/views/branches_screen.dart';
 import 'package:america/views/careers_screen.dart';
 import 'package:america/views/couponsScreen.dart';
 import 'package:america/views/gifts_screen.dart';
-import 'package:america/views/locationScreen.dart';
-import 'package:america/views/login_screen.dart';
 import 'package:america/views/productScreen.dart';
 import 'package:america/views/profile_screen.dart';
 
@@ -36,13 +33,10 @@ import 'package:america/views/socials_screen.dart';
 import 'package:america/views/weeklyAdsScreen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:america/AppTheme.dart';
 import 'package:america/AppThemeNotifier.dart';
-import 'package:america/api/api_util.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../utils/space_widget.dart';
@@ -53,10 +47,10 @@ class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   //Theme Data
   late ThemeData themeData;
   late CustomAppTheme customAppTheme;
@@ -99,20 +93,16 @@ class _HomeScreenState extends State<HomeScreen> {
     // Initialize actionMap here in the initState method
     actionMap = {
       "location": () {
-        if (locations!.first.lng != null) {
-          final Uri toLaunchGoogleMap = Uri.parse(
-              "https://www.google.com/maps/search/?api=1&query=${locations!.first.lat},${locations!.first.lng}");
-          _launchInWebViewGoogleMap(toLaunchGoogleMap);
-          return null; // Return null as no widget to display
-        } else {
-          return Text("Can't find lat and lng");
-        }
+        final Uri toLaunchGoogleMap = Uri.parse(
+            "https://www.google.com/maps/search/?api=1&query=${locations!.first.lat},${locations!.first.lng}");
+        _launchInWebViewGoogleMap(toLaunchGoogleMap);
+        return null; // Return null as no widget to display
       },
       "online": () {
         final Uri linkOnline = Uri.parse(onlines!.first.link);
         _launchInWebViewWithoutJavaScript(linkOnline);
         return null; // Return null as no widget to display
-            },
+      },
       "social": () async {
         for (var setting in settings!) {
           if (setting.link != null) {
@@ -164,14 +154,10 @@ class _HomeScreenState extends State<HomeScreen> {
     MyResponse<QrModel> myResponse = await SocialController.getAllQrcood();
 
     if (myResponse.success) {
-      print("qr done12");
-      print(myResponse.data);
       qrModel = myResponse.data;
       loadedQr = true;
       setState(() {});
-    } else {
-      print("qr er");
-    }
+    } else {}
   }
 
   getBanners() async {
@@ -185,12 +171,8 @@ class _HomeScreenState extends State<HomeScreen> {
         await BannerController.getAllBanners();
 
     if (myResponse.success) {
-      print("banners done12");
-      print(myResponse.data);
       banners = myResponse.data;
-    } else {
-      print("banners er");
-    }
+    } else {}
 
     if (mounted) {
       setState(() {
@@ -210,17 +192,13 @@ class _HomeScreenState extends State<HomeScreen> {
         await SettingController.getAllSetting();
 
     if (myResponse.success) {
-      print("Setting done12");
-      print(myResponse.data);
       settings = myResponse.data;
 
       settings!.add(Setting(id: 1000, table_name: "scan"));
       settings!.add(Setting(id: 10010, table_name: "branches"));
       //  settings!.add(Setting(id: 1001, table_name: "career"));
       // settings!.add(Setting(id: 1002, table_name: "gift"));
-    } else {
-      print("Setting er");
-    }
+    } else {}
 
     if (mounted) {
       setState(() {
@@ -240,12 +218,9 @@ class _HomeScreenState extends State<HomeScreen> {
         await LocationsController.getAllLocations();
 
     if (myResponse.success) {
-      print("locations done12");
       log(myResponse.data.toString());
       locations = myResponse.data;
-    } else {
-      print("locations er");
-    }
+    } else {}
 
     if (mounted) {
       setState(() {
@@ -264,12 +239,8 @@ class _HomeScreenState extends State<HomeScreen> {
     MyResponse<List<Social>> myResponse = await SocialController.getAllSocial();
 
     if (myResponse.success) {
-      print("socials done12");
-      print(myResponse.data);
       socials = myResponse.data;
-    } else {
-      print("socials er");
-    }
+    } else {}
 
     if (mounted) {
       setState(() {
@@ -288,12 +259,9 @@ class _HomeScreenState extends State<HomeScreen> {
     MyResponse<List<Online>> myResponse = await OnlineController.getAllOnline();
 
     if (myResponse.success) {
-      print("onlines done12");
       log(myResponse.data.toString());
       onlines = myResponse.data;
-    } else {
-      print("onlines er");
-    }
+    } else {}
 
     if (mounted) {
       setState(() {
@@ -520,12 +488,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 return CircularProgressIndicator();
                                               } else if (snapshot.hasError) {
                                                 // Future completed with an error, show an error message
-                                                print(
-                                                    "Error: ${snapshot.error}");
-                                                return Container(
-                                                  child: Text(
-                                                      "Failed to load image"),
-                                                );
+                                                return Text(
+                                                    "Failed to load image");
                                               } else {
                                                 // Future completed successfully, show the image
                                                 return ClipRRect(
@@ -588,239 +552,233 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                 Padding(
                                   padding: EdgeInsets.only(bottom: 15.sp),
-                                  child: Container(
-                                    child: GridView.builder(
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      itemCount: settings!.length,
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount:
-                                                  2, // 3 boxes in each row
-                                              childAspectRatio: 0.9,
-                                              mainAxisSpacing: 1.4),
-                                      itemBuilder: (context, index) {
-                                        Setting setting = settings![index];
+                                  child: GridView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: settings!.length,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount:
+                                                2, // 3 boxes in each row
+                                            childAspectRatio: 0.9,
+                                            mainAxisSpacing: 1.4),
+                                    itemBuilder: (context, index) {
+                                      Setting setting = settings![index];
 
-                                        String image = setting.table_name ==
-                                                "career"
-                                            ? "assets/images/careers.png"
-                                            : setting.table_name == "gift"
-                                                ? "assets/images/gift.png"
-                                                : setting.table_name ==
-                                                        "branches"
-                                                    ? "assets/images/branch.png"
-                                                    : setting.table_name ==
-                                                            "weekly"
-                                                        ? "assets/images/weekly_ads.png"
-                                                        : setting.table_name ==
-                                                                "product"
-                                                            ? "assets/images/products_icon.png"
-                                                            : setting.table_name ==
-                                                                    "coupon"
-                                                                ? "assets/images/coupon.png"
-                                                                : setting.table_name ==
-                                                                        "location"
-                                                                    ? "assets/images/location.svg"
-                                                                    : setting.table_name ==
-                                                                            "social"
-                                                                        ? "assets/images/social_media.png"
-                                                                        : setting.table_name ==
-                                                                                "scan"
-                                                                            ? "assets/images/scan.png"
-                                                                            : setting.table_name == "online"
-                                                                                ? "assets/images/products.png"
-                                                                                : "assets/images/weekly_ads.png";
-                                        Color color = setting.table_name ==
-                                                "career"
-                                            ? Colors.blueAccent
-                                            : setting.table_name == "gift"
-                                                ? Colors.redAccent
-                                                : setting.table_name ==
-                                                        "branches"
-                                                    ? Colors.pink
-                                                    : setting.table_name ==
-                                                            "weekly"
-                                                        ? Color(0xfff32833)
-                                                        : setting.table_name ==
-                                                                "product"
-                                                            ? Color(0xffffba4c)
-                                                            : setting.table_name ==
-                                                                    "coupon"
-                                                                ? Color(
-                                                                    0xff000190)
-                                                                : setting.table_name ==
-                                                                        "location"
-                                                                    ? Color(
-                                                                        0xff119201)
-                                                                    : setting.table_name ==
-                                                                            "social"
-                                                                        ? Color(
-                                                                            0xff0198e0)
-                                                                        : setting.table_name ==
-                                                                                "scan"
-                                                                            ? Color(0xffec1fa0)
-                                                                            : setting.table_name == "online"
-                                                                                ? Color(0xfffb123c)
-                                                                                : Colors.redAccent;
-                                        Color moreColor = setting.table_name ==
-                                                "weekly"
-                                            ? Color(0xff4e9a63)
-                                            : setting.table_name == "branches"
-                                                ? Colors.pink
-                                                : setting.table_name == "gift"
-                                                    ? Color(0xffc7485f)
-                                                    : setting.table_name ==
-                                                            "product"
-                                                        ? Color(0xffffba4c)
-                                                        : setting.table_name ==
-                                                                "coupon"
-                                                            ? Color(0xff009fda)
-                                                            : setting.table_name ==
-                                                                    "location"
-                                                                ? Color(
-                                                                    0xfff24f04)
-                                                                : setting.table_name ==
-                                                                        "social"
-                                                                    ? Color(
-                                                                        0xfff9b751)
-                                                                    : setting.table_name ==
-                                                                            "scan"
-                                                                        ? Color(
-                                                                            0xff7401e0)
-                                                                        : setting.table_name ==
-                                                                                "online"
-                                                                            ? Color(0xfffb123c)
-                                                                            : Colors.redAccent;
-                                        return BoxItem(
-                                          text: setting.table_name == "career"
-                                              ? "Careers"
+                                      String image = setting.table_name ==
+                                              "career"
+                                          ? "assets/images/careers.png"
+                                          : setting.table_name == "gift"
+                                              ? "assets/images/gift.png"
                                               : setting.table_name == "branches"
-                                                  ? "Stores"
-                                                  : setting.table_name == "gift"
-                                                      ? "Gifts"
+                                                  ? "assets/images/branch.png"
+                                                  : setting.table_name ==
+                                                          "weekly"
+                                                      ? "assets/images/weekly_ads.png"
                                                       : setting.table_name ==
-                                                              "online"
-                                                          ? "Shop Now"
+                                                              "product"
+                                                          ? "assets/images/products_icon.png"
                                                           : setting.table_name ==
-                                                                  "weekly"
-                                                              ? "Weekly Ad"
+                                                                  "coupon"
+                                                              ? "assets/images/coupon.png"
+                                                              : setting.table_name ==
+                                                                      "location"
+                                                                  ? "assets/images/location.svg"
+                                                                  : setting.table_name ==
+                                                                          "social"
+                                                                      ? "assets/images/social_media.png"
+                                                                      : setting.table_name ==
+                                                                              "scan"
+                                                                          ? "assets/images/scan.png"
+                                                                          : setting.table_name == "online"
+                                                                              ? "assets/images/products.png"
+                                                                              : "assets/images/weekly_ads.png";
+                                      Color color = setting.table_name ==
+                                              "career"
+                                          ? Colors.blueAccent
+                                          : setting.table_name == "gift"
+                                              ? Colors.redAccent
+                                              : setting.table_name == "branches"
+                                                  ? Colors.pink
+                                                  : setting.table_name ==
+                                                          "weekly"
+                                                      ? Color(0xfff32833)
+                                                      : setting.table_name ==
+                                                              "product"
+                                                          ? Color(0xffffba4c)
+                                                          : setting.table_name ==
+                                                                  "coupon"
+                                                              ? Color(
+                                                                  0xff000190)
+                                                              : setting.table_name ==
+                                                                      "location"
+                                                                  ? Color(
+                                                                      0xff119201)
+                                                                  : setting.table_name ==
+                                                                          "social"
+                                                                      ? Color(
+                                                                          0xff0198e0)
+                                                                      : setting.table_name ==
+                                                                              "scan"
+                                                                          ? Color(
+                                                                              0xffec1fa0)
+                                                                          : setting.table_name == "online"
+                                                                              ? Color(0xfffb123c)
+                                                                              : Colors.redAccent;
+                                      Color moreColor = setting.table_name ==
+                                              "weekly"
+                                          ? Color(0xff4e9a63)
+                                          : setting.table_name == "branches"
+                                              ? Colors.pink
+                                              : setting.table_name == "gift"
+                                                  ? Color(0xffc7485f)
+                                                  : setting.table_name ==
+                                                          "product"
+                                                      ? Color(0xffffba4c)
+                                                      : setting.table_name ==
+                                                              "coupon"
+                                                          ? Color(0xff009fda)
+                                                          : setting.table_name ==
+                                                                  "location"
+                                                              ? Color(
+                                                                  0xfff24f04)
                                                               : setting.table_name ==
                                                                       "social"
-                                                                  ? "Social Media"
+                                                                  ? Color(
+                                                                      0xfff9b751)
                                                                   : setting.table_name ==
                                                                           "scan"
-                                                                      ? "Scan & Share "
+                                                                      ? Color(
+                                                                          0xff7401e0)
                                                                       : setting.table_name ==
-                                                                              "product"
-                                                                          ? "In Store Deals!"
-                                                                          : setting.table_name == "location"
-                                                                              ? "Locations"
-                                                                              : setting.table_name == "coupon"
-                                                                                  ? "Coupons"
-                                                                                  : setting.table_name!,
-                                          color: color,
-                                          moreColor: moreColor,
-                                          image: setting.table_name ==
-                                                  "location"
-                                              ? SvgPicture.asset(
-                                                  image,
-                                                  width: 18.sp,
-                                                  height: 18.sp,
-                                                )
-                                              : setting.table_name == "social"
-                                                  ? Image.asset(
-                                                      image,
-                                                      width: 18.sp,
-                                                      height: 15.sp,
-                                                    )
-                                                  : Image.asset(
-                                                      image,
-                                                      width: 18.sp,
-                                                      height: 18.sp,
-                                                    ),
-                                          onTap: () {
-                                            if (setting.table_name ==
-                                                "career") {
-                                              pushScreen(
-                                                  context, CareerScreen());
-                                              return;
-                                            }
-                                            if (setting.table_name ==
-                                                "branches") {
-                                              pushScreen(
-                                                  context, BranchesScreen());
-                                              return;
-                                            }
-                                            if (setting.table_name == "gift") {
-                                              pushScreen(
-                                                  context, GiftsScreen());
-                                              return;
-                                            }
-                                            if (setting.table_name ==
-                                                "social") {
-                                              pushScreen(
-                                                  context,
-                                                  SocialScreen(
-                                                    socials: socials,
-                                                  ));
-                                              return;
-                                            }
-                                            if (setting.table_name ==
-                                                "location") {
-                                              pushScreen(
-                                                  context,
-                                                  LocationsScreen(
-                                                    locations: locations,
-                                                  ));
-                                              return;
-                                            }
-                                            if (setting.table_name ==
-                                                "online") {
-                                              pushScreen(
-                                                  context,
-                                                  OnlinesScreen(
-                                                    onlines: onlines,
-                                                  ));
-                                              return;
-                                            }
-                                            if (setting.table_name == "scan") {
-                                              _showDialog();
-                                              return;
-                                            }
-                                            if (actionMap.containsKey(
-                                                setting.table_name)) {
-                                              final result = actionMap[
-                                                  setting.table_name]!();
-                                              if (result != null &&
-                                                  result is Widget) {
-                                                // Display the widget (e.g., an error message)
-                                                showDialog(
-                                                  context: context,
-                                                  builder: (context) =>
-                                                      AlertDialog(
-                                                    content: result,
+                                                                              "online"
+                                                                          ? Color(
+                                                                              0xfffb123c)
+                                                                          : Colors
+                                                                              .redAccent;
+                                      return BoxItem(
+                                        text: setting.table_name == "career"
+                                            ? "Careers"
+                                            : setting.table_name == "branches"
+                                                ? "Stores"
+                                                : setting.table_name == "gift"
+                                                    ? "Gifts"
+                                                    : setting.table_name ==
+                                                            "online"
+                                                        ? "Shop Now"
+                                                        : setting.table_name ==
+                                                                "weekly"
+                                                            ? "Weekly Ad"
+                                                            : setting.table_name ==
+                                                                    "social"
+                                                                ? "Social Media"
+                                                                : setting.table_name ==
+                                                                        "scan"
+                                                                    ? "Scan & Share "
+                                                                    : setting.table_name ==
+                                                                            "product"
+                                                                        ? "In Store Deals!"
+                                                                        : setting.table_name ==
+                                                                                "location"
+                                                                            ? "Locations"
+                                                                            : setting.table_name == "coupon"
+                                                                                ? "Coupons"
+                                                                                : setting.table_name!,
+                                        color: color,
+                                        moreColor: moreColor,
+                                        image: setting.table_name == "location"
+                                            ? SvgPicture.asset(
+                                                image,
+                                                width: 18.sp,
+                                                height: 18.sp,
+                                              )
+                                            : setting.table_name == "social"
+                                                ? Image.asset(
+                                                    image,
+                                                    width: 18.sp,
+                                                    height: 15.sp,
+                                                  )
+                                                : Image.asset(
+                                                    image,
+                                                    width: 18.sp,
+                                                    height: 18.sp,
                                                   ),
-                                                );
-                                              }
-                                            } else {
-                                              if (tableScreenMap.containsKey(
-                                                  setting.table_name)) {
-                                                Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          tableScreenMap[setting
-                                                              .table_name]!),
-                                                );
-                                              } else {
-                                                // Handle cases where neither action nor screen matches
-                                              }
+                                        onTap: () {
+                                          if (setting.table_name == "career") {
+                                            pushScreen(context, CareerScreen());
+                                            return;
+                                          }
+                                          if (setting.table_name ==
+                                              "branches") {
+                                            pushScreen(
+                                                context, BranchesScreen());
+                                            return;
+                                          }
+                                          if (setting.table_name == "gift") {
+                                            pushScreen(context, GiftsScreen());
+                                            return;
+                                          }
+                                          if (setting.table_name == "social") {
+                                            pushScreen(
+                                                context,
+                                                SocialScreen(
+                                                  socials: socials,
+                                                ));
+                                            return;
+                                          }
+                                          if (setting.table_name ==
+                                              "location") {
+                                            pushScreen(
+                                                context,
+                                                LocationsScreen(
+                                                  locations: locations,
+                                                ));
+                                            return;
+                                          }
+                                          if (setting.table_name == "online") {
+                                            pushScreen(
+                                                context,
+                                                OnlinesScreen(
+                                                  onlines: onlines,
+                                                ));
+                                            return;
+                                          }
+                                          if (setting.table_name == "scan") {
+                                            _showDialog();
+                                            return;
+                                          }
+                                          if (actionMap.containsKey(
+                                              setting.table_name)) {
+                                            final result = actionMap[
+                                                setting.table_name]!();
+                                            if (result != null &&
+                                                result is Widget) {
+                                              // Display the widget (e.g., an error message)
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) =>
+                                                    AlertDialog(
+                                                  content: result,
+                                                ),
+                                              );
                                             }
-                                          },
-                                        );
-                                      },
-                                    ),
+                                          } else {
+                                            if (tableScreenMap.containsKey(
+                                                setting.table_name)) {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        tableScreenMap[setting
+                                                            .table_name]!),
+                                              );
+                                            } else {
+                                              // Handle cases where neither action nor screen matches
+                                            }
+                                          }
+                                        },
+                                      );
+                                    },
                                   ),
                                 ),
                               ],
@@ -969,7 +927,8 @@ class BoxItem extends StatelessWidget {
   final VoidCallback onTap;
 
   const BoxItem(
-      {super.key, required this.text,
+      {super.key,
+      required this.text,
       required this.color,
       required this.image,
       required this.onTap,
@@ -977,86 +936,85 @@ class BoxItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: GestureDetector(
-        onTap: onTap,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned(
-              top: 2.sp,
-              child: Container(
-                width: 26.sp,
-                height: 20.sp,
-                decoration: BoxDecoration(
-                  // Set the background color
-                  border: Border.all(
-                    color: color, // Set the border color
-                    width: 3.0, // Set the border width
-                  ),
-                  borderRadius: BorderRadius.circular(6.sp),
+    return GestureDetector(
+      onTap: onTap,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Positioned(
+            top: 2.sp,
+            child: Container(
+              width: 26.sp,
+              height: 20.sp,
+              decoration: BoxDecoration(
+                // Set the background color
+                border: Border.all(
+                  color: color, // Set the border color
+                  width: 3.0, // Set the border width
                 ),
-                child: Center(
-                  child: text == "scan"
-                      ? Column(
-                          children: [
-                            SpaceHeight(height: 3),
-                            Container(
-                              width: 20.sp, // Adjust the width as needed
-                              height: 20.sp,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20)), // Adjust the height as needed
-                              child: image,
-                            )
-                          ],
-                        )
-                      : image,
+                borderRadius: BorderRadius.circular(6.sp),
+              ),
+              child: Center(
+                child: text == "scan"
+                    ? Column(
+                        children: [
+                          SpaceHeight(height: 3),
+                          Container(
+                            width: 20.sp, // Adjust the width as needed
+                            height: 20.sp,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                    20)), // Adjust the height as needed
+                            child: image,
+                          )
+                        ],
+                      )
+                    : image,
+              ),
+            ),
+          ),
+
+          Positioned(
+            top: 20.sp,
+            child: Container(
+              width: 30.sp,
+              height: 11.sp,
+              decoration: BoxDecoration(
+                  color: color,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(2.sp),
+                      bottomRight: Radius.circular(2.sp))),
+              child: Center(
+                child: Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 26,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w500),
                 ),
               ),
             ),
+          ),
+          //   Positioned(
+          //   top:27.sp,
+          //   child: Container(
+          //       width: 16.sp,
+          //       height:6.sp,
+          //           decoration: BoxDecoration(color: moreColor,),
+          //       child: Center(
+          //         child: Text(
+          //        "View More",
+          //           style: TextStyle(
+          //             fontSize:16,
+          //             color: Colors.white
+          //           ),
+          //         ),
+          //       ),),
+          // ),
 
-            Positioned(
-              top: 20.sp,
-              child: Container(
-                width: 30.sp,
-                height: 11.sp,
-                decoration: BoxDecoration(
-                    color: color,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(2.sp),
-                        bottomRight: Radius.circular(2.sp))),
-                child: Center(
-                  child: Text(
-                    text,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 26,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ),
-            ),
-            //   Positioned(
-            //   top:27.sp,
-            //   child: Container(
-            //       width: 16.sp,
-            //       height:6.sp,
-            //           decoration: BoxDecoration(color: moreColor,),
-            //       child: Center(
-            //         child: Text(
-            //        "View More",
-            //           style: TextStyle(
-            //             fontSize:16,
-            //             color: Colors.white
-            //           ),
-            //         ),
-            //       ),),
-            // ),
-
-            //   Text(text, style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold)),
-          ],
-        ),
+          //   Text(text, style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold)),
+        ],
       ),
     );
   }

@@ -2,22 +2,16 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:america/constants.dart';
-import 'package:america/reset_password_screen.dart';
 import 'package:america/utils/app_ui.dart';
 import 'package:america/utils/primary_button.dart';
 import 'package:america/utils/space_widget.dart';
-import 'package:america/views/appScreen.dart';
 import 'package:america/views/branches_screen.dart';
-import 'package:america/views/homeScreen.dart';
 import 'package:america/views/register_screen.dart';
 import 'package:america/widgets/navigator.dart';
-import 'package:america/widgets/text_field.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../controllers/AuthController.dart';
-import '../pin_code_screen.dart';
 import '../utils/app_utilities.dart';
 import '../utils/loading_button.dart';
 import '../utils/validation.dart';

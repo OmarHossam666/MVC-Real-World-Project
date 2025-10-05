@@ -1,17 +1,12 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:america/constants.dart';
 import 'package:america/controllers/CareersController.dart';
 import 'package:america/models/Career.dart';
-import 'package:america/models/MyResponse.dart';
 import 'package:america/services/general_image_picker.dart';
 import 'package:america/utils/app_ui.dart';
 import 'package:america/utils/space_widget2.dart';
-import 'package:america/utils/validation.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class ApplyCareerScreen extends StatefulWidget {
   final Career careers;
@@ -70,7 +65,7 @@ class _ApplyCareerScreenState extends State<ApplyCareerScreen> {
                               color: Colors.white,
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
+                                  color: Colors.grey.withValues(alpha: 0.5),
                                   spreadRadius: 5,
                                   blurRadius: 7,
                                   offset: Offset(
@@ -321,7 +316,6 @@ class _ApplyCareerScreenState extends State<ApplyCareerScreen> {
                                 ),
                               );
                             }
-                            return Container();
                           }),
                           const SpaceHeight(height: 2),
                           SizedBox(
@@ -338,7 +332,9 @@ class _ApplyCareerScreenState extends State<ApplyCareerScreen> {
                                     isInProgress = false;
                                     setState(() {});
                                   }).then((value) {
-                                    Navigator.pop(context);
+                                    if (context.mounted) {
+                                      Navigator.pop(context);
+                                    }
                                   });
                                 }
                               },

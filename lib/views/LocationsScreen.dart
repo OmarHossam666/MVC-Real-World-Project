@@ -42,33 +42,31 @@ class _LocationsScreenState extends State<LocationsScreen> {
           child: Column(children: [
             Padding(
               padding: EdgeInsets.only(left: 2.sp, top: 2.sp),
-              child: Container(
-                child: Row(
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            color: Colors.black,
-                          )),
-                    ),
-                    SpaceWidth(width: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Center(
-                            child: Text(
-                          "Locations",
-                          style: TextStyle(fontSize: 25, color: Colors.black),
+              child: Row(
+                children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.black,
                         )),
-                      ],
-                    ),
-                  ],
-                ),
+                  ),
+                  SpaceWidth(width: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                          child: Text(
+                        "Locations",
+                        style: TextStyle(fontSize: 25, color: Colors.black),
+                      )),
+                    ],
+                  ),
+                ],
               ),
             ),
             SpaceHeight(height: 10),
@@ -107,87 +105,80 @@ class _LocationsScreenState extends State<LocationsScreen> {
                                     topLeft: Radius.circular(3.sp),
                                     bottomLeft: Radius.circular(3.sp)),
                               ),
-                              child: Container(
-                                child: Center(
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SpaceWidth(width: 16),
-                                      InkWell(
-                                        onTap: () {
-                                          final Uri toLaunchGoogleMap = Uri.parse(
-                                              "https://www.google.com/maps/search/?api=1&query=${location.lat},${location.lng}");
-                                          _launchInWebViewGoogleMap(
-                                              toLaunchGoogleMap);
-                                        },
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            SizedBox(
-                                                width: 35.sp,
-                                                child: Text(
-                                                  "${location.name} asfasfsafasfasfasf",
-                                                  maxLines: 1,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 4.sp),
-                                                )),
-                                            Text(
-                                              "Open Location",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 3.sp,
-                                                  color: Colors.redAccent),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              IconButton(
-                                                  onPressed: () {
-                                                    callNumber(location.phone);
-                                                  },
-                                                  icon: Icon(
-                                                    Icons.call,
-                                                    color: Colors.red,
-                                                    size: 6.sp,
-                                                  )),
-                                            ],
+                              child: Center(
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SpaceWidth(width: 16),
+                                    InkWell(
+                                      onTap: () {
+                                        final Uri toLaunchGoogleMap = Uri.parse(
+                                            "https://www.google.com/maps/search/?api=1&query=${location.lat},${location.lng}");
+                                        _launchInWebViewGoogleMap(
+                                            toLaunchGoogleMap);
+                                      },
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          SizedBox(
+                                              width: 35.sp,
+                                              child: Text(
+                                                "${location.name} asfasfsafasfasfasf",
+                                                maxLines: 1,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 4.sp),
+                                              )),
+                                          Text(
+                                            "Open Location",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 3.sp,
+                                                color: Colors.redAccent),
                                           ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          IconButton(
+                                              onPressed: () {
+                                                callNumber(location.phone);
+                                              },
+                                              icon: Icon(
+                                                Icons.call,
+                                                color: Colors.red,
+                                                size: 6.sp,
+                                              )),
+                                        ],
+                                      ),
+                                    )
+                                  ],
                                 ),
                               ),
                             ),
                           ),
                           Positioned(
-                              top: 0,
-                              left: 3.sp,
-                              child: Container(
-                                width: 12.sp,
-                                height: 12.sp,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle, color: Colors.red),
-                                child: Container(
-                                  child: Center(
-                                    child: Image.asset(
-                                      "assets/images/map_icon.png",
-                                      width: 5.sp,
-                                      height: 5.sp,
-                                    ),
-                                  ),
+                            top: 0,
+                            left: 3.sp,
+                            child: Container(
+                              width: 12.sp,
+                              height: 12.sp,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle, color: Colors.red),
+                              child: Center(
+                                child: Image.asset(
+                                  "assets/images/map_icon.png",
+                                  width: 5.sp,
+                                  height: 5.sp,
                                 ),
-                              ))
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),

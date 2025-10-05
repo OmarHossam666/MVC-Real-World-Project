@@ -1,19 +1,12 @@
 import 'dart:developer';
 
 import 'package:america/constants.dart';
-import 'package:america/controllers/AuthController.dart';
-import 'package:america/models/Online.dart';
 import 'package:america/models/Social.dart';
 import 'package:america/utils/app_ui.dart';
 import 'package:america/utils/empty_widget.dart';
-import 'package:america/utils/main_services.dart';
 import 'package:america/utils/space_widget2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../models/Location.dart';
-import '../services/navigator_utils.dart';
 
 class SocialScreen extends StatefulWidget {
   final List<Social>? socials;
@@ -42,10 +35,10 @@ class _OnlinesScreenState extends State<SocialScreen> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Column(children: [
-            Padding(
-              padding: EdgeInsets.only(left: 2.sp, top: 2.sp),
-              child: Container(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.only(left: 2.sp, top: 2.sp),
                 child: Row(
                   children: [
                     Align(
@@ -73,12 +66,11 @@ class _OnlinesScreenState extends State<SocialScreen> {
                   ],
                 ),
               ),
-            ),
-            SpaceHeight(height: 10),
-            widget.socials == null || widget.socials!.isEmpty
-                ? EmptyWidget(hint: "No Socials")
-                : Container(),
-            ListView.builder(
+              SpaceHeight(height: 10),
+              widget.socials == null || widget.socials!.isEmpty
+                  ? EmptyWidget(hint: "No Socials")
+                  : Container(),
+              ListView.builder(
                 shrinkWrap: true, // Add this line
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: widget.socials == null ? 0 : widget.socials!.length,
@@ -153,23 +145,21 @@ class _OnlinesScreenState extends State<SocialScreen> {
                                         decoration: BoxDecoration(
                                             shape: BoxShape.circle,
                                             color: Colors.blueAccent),
-                                        child: Container(
-                                          child: Center(
-                                            child: IconButton(
-                                                onPressed: () {
-                                                  final Uri toLaunchGoogleMap =
-                                                      Uri.parse(location.link);
-                                                  _launchInWebViewGoogleMap(
-                                                      toLaunchGoogleMap);
-                                                },
-                                                icon: RotatedBox(
-                                                    quarterTurns: 2,
-                                                    child: Icon(
-                                                      Icons.arrow_back_rounded,
-                                                      color: Colors.white,
-                                                      size: 5.sp,
-                                                    ))),
-                                          ),
+                                        child: Center(
+                                          child: IconButton(
+                                              onPressed: () {
+                                                final Uri toLaunchGoogleMap =
+                                                    Uri.parse(location.link);
+                                                _launchInWebViewGoogleMap(
+                                                    toLaunchGoogleMap);
+                                              },
+                                              icon: RotatedBox(
+                                                  quarterTurns: 2,
+                                                  child: Icon(
+                                                    Icons.arrow_back_rounded,
+                                                    color: Colors.white,
+                                                    size: 5.sp,
+                                                  ))),
                                         ),
                                       )
                                     ],
@@ -179,28 +169,29 @@ class _OnlinesScreenState extends State<SocialScreen> {
                             ),
                           ),
                           Positioned(
-                              top: 0,
-                              left: 3.sp,
-                              child: SizedBox(
-                                width: 12.sp,
-                                height: 12.sp,
-                                // decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.blueAccent),
-                                child: Container(
-                                  child: Center(
-                                    child: Image.network(
-                                      location.photo,
-                                      width: 9.sp,
-                                      height: 9.sp,
-                                    ),
-                                  ),
+                            top: 0,
+                            left: 3.sp,
+                            child: SizedBox(
+                              width: 12.sp,
+                              height: 12.sp,
+                              // decoration: BoxDecoration(shape: BoxShape.circle,color: Colors.blueAccent),
+                              child: Center(
+                                child: Image.network(
+                                  location.photo,
+                                  width: 9.sp,
+                                  height: 9.sp,
                                 ),
-                              ))
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                   );
-                }),
-          ]),
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

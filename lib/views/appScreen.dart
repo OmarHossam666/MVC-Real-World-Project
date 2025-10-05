@@ -1,19 +1,14 @@
 import 'package:america/AppTheme.dart';
 import 'package:america/AppThemeNotifier.dart';
-import 'package:america/api/api_util.dart';
 import 'package:america/services/AppLocalizations.dart';
 
 import 'package:america/utils/SizeConfig.dart';
 import 'package:america/views/couponsScreen.dart';
-import 'package:america/views/locationScreen.dart';
 import 'package:america/views/weeklyAdsScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:america/views/homeScreen.dart';
-
-
-
 
 class AppScreen extends StatefulWidget {
   final int selectedPage;
@@ -21,24 +16,21 @@ class AppScreen extends StatefulWidget {
   const AppScreen({super.key, this.selectedPage = 0});
 
   @override
-  _AppScreenState createState() => _AppScreenState();
+  AppScreenState createState() => AppScreenState();
 }
 
-class _AppScreenState extends State<AppScreen>
+class AppScreenState extends State<AppScreen>
     with SingleTickerProviderStateMixin {
   int _currentIndex = 0;
   bool isInProgress = false;
 
-
-
-  TabController ?_tabController;
+  TabController? _tabController;
 
   _handleTabSelection() {
     setState(() {
       _currentIndex = _tabController!.index;
     });
   }
-
 
   @override
   void initState() {
@@ -47,7 +39,6 @@ class _AppScreenState extends State<AppScreen>
 
     super.initState();
   }
-
 
   @override
   dispose() {
@@ -58,16 +49,14 @@ class _AppScreenState extends State<AppScreen>
   ThemeData? themeData;
   CustomAppTheme? customAppTheme;
 
-
   @override
   Widget build(BuildContext context) {
-
     return Consumer<AppThemeNotifier>(
-      builder: (BuildContext context, AppThemeNotifier value, Widget ?child) {
+      builder: (BuildContext context, AppThemeNotifier value, Widget? child) {
         int themeMode = value.themeMode();
         themeData = AppTheme.getThemeFromThemeMode(themeMode);
         customAppTheme = AppTheme.getCustomAppTheme(themeMode);
-        return  Scaffold(
+        return Scaffold(
           backgroundColor: customAppTheme!.bgLayer1,
           bottomNavigationBar: BottomAppBar(
               elevation: 0,
@@ -93,91 +82,104 @@ class _AppScreenState extends State<AppScreen>
                     Container(
                         child: (_currentIndex == 0)
                             ? Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Icon(
-                              MdiIcons.home,
-                              color: themeData!.colorScheme.primary,
-                            ),
-                            Container(
-                              child: Text(Translator.translate("home"),style: TextStyle(color: themeData!.primaryColor,fontSize: 10),),
-                            )
-                          ],
-                        )
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Icon(
+                                    MdiIcons.home,
+                                    color: themeData!.colorScheme.primary,
+                                  ),
+                                  Text(
+                                    Translator.translate("home"),
+                                    style: TextStyle(
+                                        color: themeData!.primaryColor,
+                                        fontSize: 10),
+                                  )
+                                ],
+                              )
                             : Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Icon(
-                              MdiIcons.home,
-                              color: themeData!.colorScheme.onSurface,
-                            ),
-                            Container(
-                              child: Text(Translator.translate("home"),style: TextStyle(color: themeData!.colorScheme.onSurface,fontSize: 10),),
-                            )
-                          ],
-                        )
-                    ),
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Icon(
+                                    MdiIcons.home,
+                                    color: themeData!.colorScheme.onSurface,
+                                  ),
+                                  Text(
+                                    Translator.translate("home"),
+                                    style: TextStyle(
+                                        color: themeData!.colorScheme.onSurface,
+                                        fontSize: 10),
+                                  )
+                                ],
+                              )),
                     Container(
-
                         child: (_currentIndex == 1)
                             ? Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Icon(
-                              MdiIcons.newspaperVariantOutline,
-                              color: themeData!.colorScheme.primary,
-                            ),
-                            Container(
-                              child: Text(Translator.translate("Weekly Ads"),style: TextStyle(color: themeData!.primaryColor,fontSize: 10),),
-                            )
-                          ],
-                        )
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Icon(
+                                    MdiIcons.newspaperVariantOutline,
+                                    color: themeData!.colorScheme.primary,
+                                  ),
+                                  Text(
+                                    Translator.translate("Weekly Ads"),
+                                    style: TextStyle(
+                                        color: themeData!.primaryColor,
+                                        fontSize: 10),
+                                  )
+                                ],
+                              )
                             : Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Icon(
-                              MdiIcons.newspaperVariantOutline,
-                              color: themeData!.colorScheme.onSurface,
-                            ),
-                            Container(
-                              child: Text(Translator.translate("Weekly Ads"),style: TextStyle(color: themeData!.colorScheme.onSurface,fontSize: 10),),
-                            )
-                          ],
-                        )),
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Icon(
+                                    MdiIcons.newspaperVariantOutline,
+                                    color: themeData!.colorScheme.onSurface,
+                                  ),
+                                  Text(
+                                    Translator.translate("Weekly Ads"),
+                                    style: TextStyle(
+                                        color: themeData!.colorScheme.onSurface,
+                                        fontSize: 10),
+                                  )
+                                ],
+                              )),
                     Container(
-
                         child: (_currentIndex == 2)
                             ? Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Icon(
-                              MdiIcons.scissorsCutting,
-                              color: themeData!.colorScheme.primary,
-                            ),
-                            Container(
-                              child: Text(Translator.translate("Coupons"),style: TextStyle(color: themeData!.primaryColor,fontSize: 10),),
-                            )
-                          ],
-                        )
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Icon(
+                                    MdiIcons.scissorsCutting,
+                                    color: themeData!.colorScheme.primary,
+                                  ),
+                                  Text(
+                                    Translator.translate("Coupons"),
+                                    style: TextStyle(
+                                        color: themeData!.primaryColor,
+                                        fontSize: 10),
+                                  )
+                                ],
+                              )
                             : Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Icon(
-                              MdiIcons.scissorsCutting,
-                              color: themeData!.colorScheme.onSurface,
-                            ),
-                            Container(
-                              child: Text(Translator.translate("Coupons"),style: TextStyle(color: themeData!.colorScheme.onSurface,fontSize: 10),),
-                            )
-                          ],
-                        )),
-
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Icon(
+                                    MdiIcons.scissorsCutting,
+                                    color: themeData!.colorScheme.onSurface,
+                                  ),
+                                  Text(
+                                    Translator.translate("Coupons"),
+                                    style: TextStyle(
+                                        color: themeData!.colorScheme.onSurface,
+                                        fontSize: 10),
+                                  )
+                                ],
+                              )),
                   ],
                 ),
               )),
-
           floatingActionButtonLocation:
-          FloatingActionButtonLocation.centerDocked,
+              FloatingActionButtonLocation.centerDocked,
           body: TabBarView(
             controller: _tabController,
             children: <Widget>[
@@ -187,9 +189,7 @@ class _AppScreenState extends State<AppScreen>
             ],
           ),
         );
-
       },
     );
   }
-
 }

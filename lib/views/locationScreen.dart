@@ -1,26 +1,16 @@
-import 'dart:io';
-
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:america/AppTheme.dart';
 import 'package:america/AppThemeNotifier.dart';
-import 'package:america/api/api_util.dart';
-import 'package:america/services/AppLocalizations.dart';
-
-import '../controllers/AuthController.dart';
-import '../services/navigator_utils.dart';
-import 'login_screen.dart';
 
 class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});
 
   @override
-  _LocationScreenState createState() => _LocationScreenState();
+  LocationScreenState createState() => LocationScreenState();
 }
 
-class _LocationScreenState extends State<LocationScreen> {
+class LocationScreenState extends State<LocationScreen> {
   //Theme Data
   late ThemeData themeData;
   late CustomAppTheme customAppTheme;

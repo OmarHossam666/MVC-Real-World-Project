@@ -13,7 +13,6 @@ import 'package:america/widgets/product_widget.dart';
 
 import 'package:flutter/material.dart';
 
-import 'package:intl/intl.dart';
 
 import 'package:provider/provider.dart';
 import 'package:america/AppTheme.dart';
@@ -23,10 +22,10 @@ class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
 
   @override
-  _ProductScreenState createState() => _ProductScreenState();
+  ProductScreenState createState() => ProductScreenState();
 }
 
-class _ProductScreenState extends State<ProductScreen> {
+class ProductScreenState extends State<ProductScreen> {
   //Theme Data
   late ThemeData themeData;
   late CustomAppTheme customAppTheme;
@@ -59,19 +58,13 @@ class _ProductScreenState extends State<ProductScreen> {
         await ProductController.getAllProduct();
 
     if (myResponseCategories.success) {
-      print("Product done12");
-      print(myResponseCategories.data);
       categoryModel = myResponseCategories.data;
     } else {
       categoryModel = null;
       categoryModel = CategoryModel(categories: []);
-
-      print("Product er");
     }
 
     if (myResponseProducts.success) {
-      print("Product done12");
-      print(myResponseProducts.data);
       products = myResponseProducts.data;
       categoryModel!.categories!
           .insert(0, Category(name: "All", products: myResponseProducts.data));
@@ -82,7 +75,6 @@ class _ProductScreenState extends State<ProductScreen> {
     } else {
       products = [];
 
-      print("Product er");
     }
 
     if (mounted) {
@@ -103,11 +95,8 @@ class _ProductScreenState extends State<ProductScreen> {
         await ProductController.getAllProduct();
 
     if (myResponse.success) {
-      print("Product done12");
-      print(myResponse.data);
       products = myResponse.data;
     } else {
-      print("Product er");
     }
 
     if (mounted) {

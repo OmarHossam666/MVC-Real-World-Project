@@ -10,15 +10,11 @@ import 'package:america/utils/loading_button.dart';
 import 'package:america/utils/primary_button.dart';
 import 'package:america/utils/space_widget.dart';
 import 'package:america/utils/validation.dart';
-import 'package:america/views/appScreen.dart';
 import 'package:america/views/branches_screen.dart';
-import 'package:america/views/homeScreen.dart';
 import 'package:america/widgets/text_field.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../pin_code_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -307,15 +303,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                                 await sharedPreferences.setString(
                                     'name', user['name']);
-                                await sharedPreferences.setString('email',
-                                    user['email'] ?? "");
-                                await sharedPreferences.setString('phone',
-                                    user['phone'] ?? "");
+                                await sharedPreferences.setString(
+                                    'email', user['email'] ?? "");
+                                await sharedPreferences.setString(
+                                    'phone', user['phone'] ?? "");
                                 await sharedPreferences.setString(
                                     'token', token);
 
-                                pushReplacementScreen(
-                                    context, BranchesScreen());
+                                if (context.mounted) {
+                                  pushReplacementScreen(
+                                      context, BranchesScreen());
+                                }
                               } else {
                                 AppUtil.appAlert(context,
                                     msg: response.errorText.toString(),
@@ -343,15 +341,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           color: Colors.black, fontWeight: FontWeight.w600),
                     ),
                     InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                              color: Colors.redAccent,
-                              fontWeight: FontWeight.bold),
-                        )),
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                            color: Colors.redAccent,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ],
                 ),
               ),

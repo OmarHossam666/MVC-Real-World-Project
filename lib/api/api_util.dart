@@ -1,5 +1,4 @@
 import 'package:america/controllers/Branches_Controller.dart';
-import 'package:america/views/appScreen.dart';
 import 'package:america/views/homeScreen.dart';
 import 'package:flutter/material.dart';
 
